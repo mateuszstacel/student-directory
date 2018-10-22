@@ -34,6 +34,7 @@ def print_footer(names)
   puts "Overall, we have #{names.count} great students"
 end
 
+# printing names started on ... "letter"
 def print_specific_names(students)
   counter = 1
   puts "please type in specific letter"
@@ -46,9 +47,23 @@ def print_specific_names(students)
   end
 end
 
+#printing names shorter then user length input
+def print_names_by_length(students)
+  counter = 1
+  puts "Please put the length of the name"
+  length = gets.chomp.to_i
+  students.each do |student|
+    if student[:name].length < length
+      puts "#{counter}. #{student[:name]} (#{student[:cohort]} cohort)"
+      counter += 1
+    end
+  end
+end
+
 #nothing happens until we call the methods
 students = input_students
 print_header
 print(students)
 print_footer(students)
 print_specific_names(students)
+print_names_by_length(students)
