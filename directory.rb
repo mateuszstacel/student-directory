@@ -115,11 +115,30 @@ def sort_by_cohort(students)
   end
 end
 
-#nothing happens until we call the methods
-students = input_students
-print_header
-print(students)
-print_footer(students)
-sort_by_cohort(students)
-print_specific_names(students)
-print_names_by_length(students)
+def interactive_menu
+  students = []
+  loop do
+    #print menu and ask user what to do
+    puts "1. Input the students"
+    puts "2. Show the students"
+    puts "9. Exit"
+    #read the input and save to variable
+    selection = gets.chomp
+    #do what the user ask
+    case selection
+      when "1"
+        students = input_students
+      when "2"
+        print_header
+        print(students)
+        print_footer(students)
+      when "9"
+        exit
+      else
+        puts "I don't know what you meant, try again"
+      end
+    end
+  end
+  
+  interactive_menu
+  
