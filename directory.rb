@@ -116,8 +116,6 @@ def sort_by_cohort(students)
 end
 
 #nothing happens until we call the methods
-nowy = gets.strip
-puts nowy
 students = input_students
 print_header
 print(students)
