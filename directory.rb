@@ -17,7 +17,7 @@ def input_students
 # while the name is not empty, repeat this code
   while !name.empty? do
 # add the student hash to the array
-    students << {name: name.to_sym, cohort: cohort.to_sym, hobby: hobby.to_sym, height: height.to_sym, country_of_birth: country_of_birth.to_sym}
+    students << {name: name, cohort: cohort, hobby: hobby.to_sym, height: height.to_sym, country_of_birth: country_of_birth.to_sym}
 # making shure user don't make any typo ,also he can redo inputs
     user_typo(students)
     if students.count == 1
@@ -84,7 +84,7 @@ def print_specific_names(students)
   letter = gets.chomp.capitalize
   students.each do |student|
     if student[:name].start_with?(letter)
-      puts "#{student[:name]}, hobby is : #{student[:hobby]}, height : #{student[:height]} country of birth #{student[:country_of_birth]} (#{student[:cohort]} cohort)"
+      puts "#{counter}.) #{student[:name]}, hobby is : #{student[:hobby]}, height : #{student[:height]} country of birth #{student[:country_of_birth]} (#{student[:cohort]} cohort)"
       counter += 1
     end
   end
@@ -94,19 +94,34 @@ end
 def print_names_by_length(students)
   counter = 1
   puts "Please put the length of the name"
-  length = gets.chomp.to_i
+  length = gets.strip.to_i
   students.each do |student|
     if student[:name].length < length
-      puts "#{student[:name]}, hobby is : #{student[:hobby]}, height : #{student[:height]} country of birth #{student[:country_of_birth]} (#{student[:cohort]} cohort)"
+      puts "#{counter}.) #{student[:name]}, hobby is : #{student[:hobby]}, height : #{student[:height]} country of birth #{student[:country_of_birth]} (#{student[:cohort]} cohort)"
       counter += 1
     end
   end
 end
 
+def sort_by_cohort(students)
+  counter = 1
+  puts "which cohort you like to see ? :"
+  cohort = gets.chomp
+  students.each do |student|
+    if student[:cohort] == cohort
+      puts "#{counter}.) #{student[:name]}, hobby is : #{student[:hobby]}, height : #{student[:height]} country of birth #{student[:country_of_birth]} (#{student[:cohort]} cohort)"
+      counter += 1
+    end  
+  end
+end
+
 #nothing happens until we call the methods
+nowy = gets.strip
+puts nowy
 students = input_students
 print_header
 print(students)
 print_footer(students)
+sort_by_cohort(students)
 print_specific_names(students)
 print_names_by_length(students)
