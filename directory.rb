@@ -141,4 +141,3 @@ def interactive_menu
   end
   
   interactive_menu
-  
