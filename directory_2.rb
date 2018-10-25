@@ -1,3 +1,4 @@
+require 'csv'
 @students = [] # an empty array accessible to all methods
 
 def input_students
@@ -34,7 +35,7 @@ end
 
 def show_students
   print_header
-  print_student_list
+  print_students_list
   print_footer
 end
 
@@ -60,11 +61,19 @@ def print_header
   puts "-------------"
 end
 
-def print_student_list
-  @students.each do |student|
-    puts "#{student[:name]} (#{student[:cohort]} cohort)"
-  end
+def print_students_list
+ counter = 1
+
+ CSV.foreach("students.csv") do |student|
+   puts "#{counter}. #{student[0]}, #{student[1]}, #{student[2]}, #{student[3]}"
+   counter += 1
+ end
+   # @students.each do |student|
+   #   puts "#{student[:name]}, #{student[:origin]}, #{student[:height]}, (#{student[:cohort]})".center(50)
+   # end
 end
+ 
+
 
 def print_footer
   puts "Overall, we have #{@students.count} great students"
@@ -78,7 +87,6 @@ def save_students
     csv_line = student_data.join(",")
     file.puts  csv_line
   end
-  file.close
   puts "Students added."
 end
 
@@ -88,7 +96,6 @@ def load_students(filename = gets.chomp)
   name, cohort = line.chomp.split(',')
     @students << {name: name, cohort: cohort}
   end
-  file.close
   puts "Students Loaded."
 end
 	
