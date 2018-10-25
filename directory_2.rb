@@ -65,7 +65,7 @@ def print_students_list
  counter = 1
 
  CSV.foreach("students.csv") do |student|
-   puts "#{counter}. #{student[0]}, #{student[1]}, #{student[2]}, #{student[3]}"
+   puts "#{counter}. #{student[0]}, #{student[1]}"
    counter += 1
  end
    # @students.each do |student|
